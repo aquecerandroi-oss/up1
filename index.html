@@ -296,7 +296,7 @@
           const email = localStorage.getItem('email') || '';
           const telephone = localStorage.getItem('telefone') || '';
 
-          const baseUrl = 'https://checkout.resolvaagora.chat/VCCL1O8SC39T';
+          const baseUrl = 'https://go.cinqpay.com.br/ffbu2jnewh';
           const url = new URL(baseUrl);
           url.searchParams.append('name', dadosUsuario.NOME || '');
           url.searchParams.append('document', dadosUsuario.CPF || '');
@@ -307,7 +307,7 @@
           window.location.href = finalUrl;
         }catch(err){
           console.error('Erro ao redirecionar:', err);
-          window.location.href = buildUrlWithParams('https://checkout.resolvaagora.chat/VCCL1O8SC39T');
+          window.location.href = buildUrlWithParams('https://go.cinqpay.com.br/ffbu2jnewh');
         }
       });
     </script>
