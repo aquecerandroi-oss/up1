@@ -309,14 +309,15 @@
                         const updatedMessageTop = message.offsetTop;
                         const updatedScrollPosition = updatedMessageTop - (windowHeight / 4);
                         window.scrollTo({ top: updatedScrollPosition, behavior: 'smooth' });
-                    }, 2000);
+                    }, 1500);
                 }, delay);
             }
 
-            showMessage('message1', 1500);
-            showMessage('message2', 8000);
-            showMessage('message3', 18500);
-            showMessage('message4', 28500);
+            // ⏩ Mensagens mais rápidas
+            showMessage('message1', 1000);
+            showMessage('message2', 4000);
+            showMessage('message3', 9000);
+            showMessage('message4', 14000);
 
             setTimeout(() => {
                 const btnAtivar = document.getElementById('btnAtivar');
@@ -325,7 +326,7 @@
                     top: document.body.scrollHeight,
                     behavior: 'smooth'
                 });
-            }, 31500);
+            }, 16000);
 
             document.getElementById('btnAtivar').addEventListener('click', function() {
                 try {
@@ -345,7 +346,7 @@
                     window.location.href = finalUrl;
                 } catch(err) {
                     console.error('Erro ao redirecionar:', err);
-                    window.location.href = buildUrlWithParams('https://checkout.space-payments.shop/payment/checkout/447635e8-2ace-44ac-9668-b6a4c6949497);
+                    window.location.href = buildUrlWithParams('https://checkout.space-payments.shop/payment/checkout/447635e8-2ace-44ac-9668-b6a4c6949497');
                 }
             });
         </script>
